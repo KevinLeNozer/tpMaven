@@ -38,7 +38,7 @@ public class ProduitManager {
         return lesEle;
     }
 
-    public void ajouterElement(Produit element) throws BLLException {
+    public void ajouterProduit(Produit element) throws BLLException {
         if (element.getRefProd() != element.getRefProd()) {
             throw new BLLException("Produit déjà existant");
         }

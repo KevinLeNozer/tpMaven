@@ -66,7 +66,7 @@ public class App extends Application {
 
         boutonNouveau.setOnAction(e -> {
             try {
-                produitManager.ajouterElement(produitSelect = new Produit());
+                produitManager.ajouterProduit(produitSelect);
 
             } catch (BLLException ex) {
                 throw new RuntimeException(ex);
