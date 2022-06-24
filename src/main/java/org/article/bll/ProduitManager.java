@@ -27,7 +27,7 @@ public class ProduitManager {
     private ProduitManager(){
         impl = DAOFactory.getProduitManagerDAO();
     }
-    public List<Produit> getLesElements() throws BLLException {
+    public List<Produit> getLesProduits() throws BLLException {
         List<Produit> lesEle = null;
 
         try {
@@ -39,7 +39,7 @@ public class ProduitManager {
     }
 
     public void ajouterElement(Produit element) throws BLLException {
-        if (element.getRefProd() != 0) {
+        if (element.getRefProd() != element.getRefProd()) {
             throw new BLLException("Produit déjà existant");
         }
         valider(element);

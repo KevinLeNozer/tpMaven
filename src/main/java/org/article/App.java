@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -20,17 +21,26 @@ import java.util.List;
  * JavaFX App
  */
 public class App extends Application {
-    private TextField maZone;
-    private TextField maZone2;
+    private TextField referenceZone = new TextField();
+    private TextField libelleZone = new TextField();
+    private TextField marqueZone = new TextField();
+    private TextField prixZone = new TextField();
+    private TextField quantiteZone = new TextField();
+
+    private Label label = new Label("Référence : ");
+    private Label libelle = new Label("Libellé");
+    private Label marque = new Label("Marque");
+    private Label prix = new Label("Prix");
+    private Label quantite = new Label("Quantité");
+    private ProduitManager produitManager = ProduitManager.getInstance();
+    private List<Produit> produits = new ArrayList<>();
+    private ChoiceBox cb = new ChoiceBox<>();
+    private Produit produitSelect;
+    private int count  = 0;
     @Override
     public void start(Stage stage) throws BLLException {
 
-
-
-        ChoiceBox cb = new ChoiceBox<>();
         cb.getItems().addAll("Pain", "Stylo", "Glace");
-        maZone = new TextField();
-        maZone2 = new TextField();
 
         Button boutonPrecedent = new Button("Précédent");
         Button boutonSuivant = new Button("Suivant");
@@ -38,32 +48,46 @@ public class App extends Application {
         Button boutonSupprimer = new Button("Supprimer");
         Button boutonNouveau = new Button("Nouveau");
 
-        boutonNouveau.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                System.out.println(App.this.maZone.getText());
+        boutonSuivant.setOnAction( e -> {
+            referenceZone.setText(String.valueOf(produitSelect.getRefProd()));
+            libelleZone.setText(String.valueOf(produitSelect.getLibelle()));
+            marqueZone.setText(String.valueOf(produitSelect.getMarque()));
+            prixZone.setText(String.valueOf(produitSelect.getPrixUnitaire()));
+            quantiteZone.setText(String.valueOf(produitSelect.getQteStock()));
+        });
+
+        boutonSupprimer.setOnAction(e -> {
+            try {
+                produitManager.deleteElement(produitSelect);
+            } catch (BLLException ex) {
+                throw new RuntimeException(ex);
             }
         });
 
-        ProduitManager test = ProduitManager.getInstance();
+        boutonNouveau.setOnAction(e -> {
+            try {
+                produitManager.ajouterElement(produitSelect = new Produit());
 
+            } catch (BLLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
-        Label label = new Label("Référence : ");
-        Label libelle = new Label("Libellé");
-        Label marque = new Label("Marque");
-        Label prix = new Label("Prix");
-        Label quantite = new Label("Quantité");
+        produits = produitManager.getLesProduits();
+        produitSelect = produits.get(count);
 
-
-
-        FlowPane root = new FlowPane();
+        //Add textField
+        VBox root = new VBox();
         root.getChildren().add(label);
-        root.getChildren().add(maZone);
+        root.getChildren().add(referenceZone);
         root.getChildren().add(libelle);
-        root.getChildren().add(maZone2);
+        root.getChildren().add(libelleZone);
         root.getChildren().add(marque);
+        root.getChildren().add(marqueZone);
         root.getChildren().add(prix);
+        root.getChildren().add(prixZone);
         root.getChildren().add(quantite);
+        root.getChildren().add(quantiteZone);
         root.getChildren().add(cb);
         root.getChildren().add(boutonPrecedent);
         root.getChildren().add(boutonEnregistrer);
@@ -71,10 +95,16 @@ public class App extends Application {
         root.getChildren().add(boutonSupprimer);
         root.getChildren().add(boutonNouveau);
 
-
         Scene scene = new Scene(root, 640, 480);
         stage.setScene(scene);
         stage.show();
+
+
+    }
+    public void menu () {
+
+
+
     }
     public static void main(String[] args) {
         launch();

@@ -75,13 +75,13 @@ public class ProduitsJDBCImpl implements DAO<Produit>{
                 ResultSet rs = pstmt.getGeneratedKeys();
                 if (rs.next()) {
                     data.setRefProd(rs.getLong(1));
-                    PreparedStatement cartePostalPstmt = null;
+                    /*PreparedStatement cartePostalPstmt = null;
                     for (Auteur auteur : ((CartePostale) data).getLesAuteursDeLaCarte()) {
                         cartePostalPstmt  = cnx.prepareStatement(SQL_INSERT_AUTEUR_CartePostale);
                         cartePostalPstmt.setInt(1, auteur.getId());
                         cartePostalPstmt.setLong(2, data.getRefProd());
                         cartePostalPstmt.executeUpdate();
-                    }
+                    }*/
                 }
             }
 
