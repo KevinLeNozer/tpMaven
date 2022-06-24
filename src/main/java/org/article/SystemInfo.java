@@ -1,4 +1,4 @@
-package org.example;
+package org.article;
 
 public class SystemInfo {
 
