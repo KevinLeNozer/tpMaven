@@ -11,9 +11,10 @@ public class Settings {
         if (properties == null) {
             properties = new Properties();
             try {
-                properties.load(Settings.class.getResourceAsStream("settings.properties"));
+                properties.load(Settings.class.getClassLoader().getResourceAsStream("settings.properties"));
             } catch (IOException e) {
-                throw new DALException("Erreur lors du chargement du fichiers contenant les informations de connection à la base de données");
+                throw new DALException("Erreur lors du chargement du fichiers contenant les " +
+                        "informations de connection à la base de données", e);
             }
         }
     }

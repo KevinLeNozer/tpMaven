@@ -1,6 +1,7 @@
 package org.article.dal.jdbc;
 
-import eu.unareil.bo.*;
+import org.article.bo.Auteur;
+import org.article.bo.Produit;
 import org.article.dal.DALException;
 
 import java.time.LocalDate;
@@ -32,11 +33,11 @@ public class TestProduitJDBCImpl {
 //
 //                auteursJDBC.insert(auteurExemple);
 //
-           List<Auteur> auteurs = auteursJDBC.selectAll();
+           /*List<Auteur> auteurs = auteursJDBC.selectAll();
             for(Auteur auteur: auteurs)
             {
                System.out.println(auteur);
-            }
+            }*/
 
            /* Auteur auteur = auteursJDBC.selectById(4);
 
@@ -46,11 +47,12 @@ public class TestProduitJDBCImpl {
             CartePostale uneDeuxiemeCarte = new CartePostale("Carte Sud Bretagne","Penestin", 10000, 0.80f,lesAuteursDeLaCarteDeux,TypeCartePostale.Paysage);
             produitJdbc.insert(uneDeuxiemeCarte);*/
 
-//            List<Produit> produits = produitJdbc.selectAll();
-//            for(Produit produit: produits)
-//            {
-//                System.out.println(produit);
-//            }
+
+            List<Produit> produit = produitJdbc.selectAll();
+            for(Produit produits: produit)
+            {
+                System.out.println(produits);
+            }
 //
 //
 //
@@ -60,10 +62,10 @@ public class TestProduitJDBCImpl {
 //            produitJdbc.delete(produitSelect);
 //            System.out.println("Produit supprimé => " + produitSelect);
 
-            Produit cartePostaleSelect = produitJdbc.selectById(25);
+            /*Produit cartePostaleSelect = produitJdbc.selectById(25);
             System.out.println(cartePostaleSelect);
             produitJdbc.delete(cartePostaleSelect);
-            System.out.println("Produit supprimé => " + cartePostaleSelect);
+            System.out.println("Produit supprimé => " + cartePostaleSelect);*/
 
         }catch (DALException e) {
             e.printStackTrace();

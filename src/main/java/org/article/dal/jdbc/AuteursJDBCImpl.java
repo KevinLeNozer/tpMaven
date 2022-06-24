@@ -1,6 +1,8 @@
 package org.article.dal.jdbc;
 
-import eu.unareil.bo.*;
+
+import org.article.bo.Auteur;
+import org.article.bo.CartePostale;
 import org.article.dal.DALException;
 
 import java.sql.*;

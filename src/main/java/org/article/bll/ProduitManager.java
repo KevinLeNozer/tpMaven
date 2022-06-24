@@ -33,7 +33,7 @@ public class ProduitManager {
         try {
             lesEle = impl.selectAll();
         } catch (DALException e) {
-            throw new BLLException("Erreur lors de la récupération des éléments chimiques", e.getCause());
+            throw new BLLException("Erreur lors de la récupération des produits", e);
         }
         return lesEle;
     }

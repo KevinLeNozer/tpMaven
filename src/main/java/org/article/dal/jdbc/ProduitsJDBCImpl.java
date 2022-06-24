@@ -1,7 +1,7 @@
 package org.article.dal.jdbc;
 
-import eu.unareil.bo.*;
-import org.article.bo.Produit;
+
+import org.article.bo.*;
 import org.article.dal.DALException;
 
 import java.sql.*;
